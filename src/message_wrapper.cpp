@@ -527,6 +527,7 @@ void MessageWrapper::LLtoUTM(double Lat, double Long, int zoneNumber, double &UT
 
 void MessageWrapper::setTimeReference(TimeReference time_reference)
 {
+  RCLCPP_INFO_STREAM(this->get_logger(), "Time Reference: "<< (time_reference==TimeReference::ROS? "ros": "ins_unix"));
   m_time_reference_ = time_reference;
 }
 
