@@ -76,6 +76,8 @@ const std_msgs::msg::Header MessageWrapper::createRosHeader(uint32_t device_time
 
   header.frame_id = m_frame_id_;
 
+  RCLCPP_WARN_STREAM(this->get_logger(), "time_ref "<< (m_time_reference_ == TimeReference::ROS ? "ROS" : "UNIX"));
+
   if (m_first_valid_utc_ && (m_time_reference_ == TimeReference::INS_UNIX))
   {
     header.stamp = convertInsTimeToUnix(device_timestamp);
