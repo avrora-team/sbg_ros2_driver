@@ -82,6 +82,10 @@ const std_msgs::msg::Header MessageWrapper::createRosHeader(uint32_t device_time
   }
   else
   {
+    if ((m_time_reference_ == TimeReference::INS_UNIX)) {
+      RCLCPP_WARN(this->get_logger(), "Valid UTC time is not received. Using ROS time");
+    }
+
     header.stamp = rclcpp::Clock().now();
   }
 
