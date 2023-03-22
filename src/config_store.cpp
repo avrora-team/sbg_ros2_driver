@@ -177,16 +177,21 @@ void ConfigStore::loadOutputTimeReference(const rclcpp::Node& ref_node_handle, c
 
   ref_node_handle.get_parameter_or<std::string>(ref_key, time_reference, "ros");
 
+  std::cout<<"Reading time reference configuration"<<std::endl;
+
   if (time_reference == "ros")
   {
+    std::cout<<"Time reference ros"<<std::endl;
     m_time_reference_ = TimeReference::ROS;
   }
   else if (time_reference == "ins_unix")
   {
+    std::cout<<"Time reference ins_unix"<<std::endl;
     m_time_reference_ = TimeReference::INS_UNIX;
   }
   else
   {
+    std::cout<<"Unknown time reference"<<std::endl;
     rclcpp::exceptions::throw_from_rcl_error(RMW_RET_ERROR, "unknown time reference: " + time_reference);
   }
 }
