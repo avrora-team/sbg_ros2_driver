@@ -175,7 +175,7 @@ void ConfigStore::loadOutputTimeReference(const rclcpp::Node& ref_node_handle, c
 {
   std::string time_reference;
 
-  ref_node_handle.get_parameter_or<std::string>(ref_key, time_reference, "ros");
+  ref_node_handle.get_parameter<std::string>(ref_key, time_reference);
 
   std::cout<<"Reading time reference configuration"<<std::endl;
 
