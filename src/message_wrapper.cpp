@@ -348,11 +348,13 @@ const rclcpp::Time MessageWrapper::convertUtcTimeToUnix(const sbg_driver::msg::S
 
   days += ref_sbg_utc_msg.day - 1;
 
+  uint64_t gnss_nanoseconds = (ref_sbg_utc_msg.gps_tow % 1000) * 1000000;
+
   nanoseconds = days * 24;
   nanoseconds = (nanoseconds + ref_sbg_utc_msg.hour) * 60;
   nanoseconds = (nanoseconds + ref_sbg_utc_msg.min) * 60;
   nanoseconds = nanoseconds + ref_sbg_utc_msg.sec;
-  nanoseconds = nanoseconds * 1000000000 + ref_sbg_utc_msg.nanosec;
+  nanoseconds = nanoseconds * 1000000000 + gnss_nanoseconds;
 
   utc_to_epoch = rclcpp::Time(nanoseconds);
 
