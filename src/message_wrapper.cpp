@@ -105,6 +105,9 @@ const rclcpp::Time MessageWrapper::convertInsTimeToUnix(uint32_t device_timestam
   utc_to_epoch          = convertUtcTimeToUnix(m_last_sbg_utc_);
   device_timestamp_diff = device_timestamp - m_last_sbg_utc_.time_stamp;
 
+
+  RCLCPP_INFO_STREAM(this->get_logger(), "utc_ns: "<<utc_to_epoch.nanoseconds() <<" ts_diff "<<device_timestamp_diff);
+
   nanoseconds = utc_to_epoch.nanoseconds() + static_cast<uint64_t>(device_timestamp_diff) * 1000;
 
   utc_to_epoch = rclcpp::Time(nanoseconds);
